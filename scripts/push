@@ -2,7 +2,7 @@
 
 DIR="$( builtin cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ROOT=$(dirname ${DIR})
-FILE="${ROOT}/fib.txt"
+FILE="${ROOT}/scripts/fib.txt"
 
 previous=1
 current=1
