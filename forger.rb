@@ -26,7 +26,7 @@ $letters = {
 class Forger
   @@WIDTH=50
   @@HEIGHT=7
-  @@COMMITS_PER_DAY=50
+  @@COMMITS_PER_DAY=5
   @@OFFSET_INTO_DAY=3600 # seconds
 
   def initialize folder=nil
@@ -41,7 +41,10 @@ class Forger
 
   def commit_at time, message='derp'
     ENV['GIT_COMMITTER_DATE'] = ENV['GIT_AUTHOR_DATE'] = time.iso8601
-    @g.commit message, :allow_empty => true
+    File.open('herp', 'w') { |file| file.write time.iso8601 }
+    @g.add '.'
+    @g.commit_all message, :allow_empty => true
+    puts "Committing at #{ENV['GIT_COMMITTER_DATE']}"
   end
 
   def time_for_coords x, y
@@ -55,11 +58,14 @@ class Forger
       bitmap = $letters[c]
       height = 7
       width = bitmap.length / height
-      (0..width).each do |x|
+      (0...width).each do |x|
         return if @i + x > width
-        (0..height).each do |y|
-          (0..@@COMMITS_PER_DAY).each do |z|
-            commit_at time_for_coords(@i + x, y)
+        (0...height).each do |y|
+          if bitmap[(width * y) + x] == "1"
+            puts "#{x}, #{y}, bitmap[#{(width * y) + x}] == #{bitmap[(width * y) + x]}"
+            (0..@@COMMITS_PER_DAY).each do |z|
+              commit_at time_for_coords(@i + x, y)
+            end
           end
         end
       end
