@@ -1,18 +1,12 @@
-Contribution Writer
+Vandal
 ========
 
-## Write things in your GitHub contribution graph! ##
+## Vandalize your Github Contribution graph and write messages. ##
 
 ## Usage ##
     gem install git # TODO: add gemfile
     
-    git clone https://github.com/psobot/contribution-writer.git 
-    cd contribution-writer
+    git clone https://github.com/psobot/vandal.git 
+    cd vandal
     
-    mkdir stupid_test
-    cd stupid_test
-    ruby ../forger.rb
-    
-    git push
-    git remote add origin git@github.com:psobot/test_forge.git
-    git push -u origin master
+    ruby vandal.rb ../graffiti
