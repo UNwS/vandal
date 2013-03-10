@@ -1,9 +1,7 @@
-Vandal
-========
+##Vandal
+**Vandalize your Github Contribution graph and write messages.**
 
-## Vandalize your Github Contribution graph and write messages. ##
-
-## Usage ##
+### Usage ###
     gem install git # TODO: add gemfile
     
     git clone https://github.com/psobot/vandal.git 
